@@ -5,16 +5,22 @@ import 'package:live_coding/store/store.dart';
 import 'package:remixicon/remixicon.dart';
 
 enum KitPictureFormat {
-  original,
+  original('original');
+
+  final String value;
+
+  const KitPictureFormat(this.value);
 }
 
 class KitPicture extends StatelessWidget {
   final String path;
   final KitPictureFormat format;
+  final BorderRadius? borderRadius;
 
-  const KitPicture({
-    required this.path,
+  const KitPicture(
+    this.path, {
     this.format = KitPictureFormat.original,
+    this.borderRadius,
     super.key,
   });
 
@@ -30,7 +36,21 @@ class KitPicture extends StatelessWidget {
         }
 
         return CachedNetworkImage(
-          imageUrl: '$baseImageUrl/$format/$path',
+          imageUrl: '$baseImageUrl${format.value}$path',
+          imageBuilder: (context, imageProvider) => Container(
+            decoration: BoxDecoration(
+              borderRadius: borderRadius,
+              color: Theme.of(context).cardColor,
+              image: DecorationImage(
+                image: imageProvider,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          progressIndicatorBuilder: (context, url, download) =>
+              CircularProgressIndicator(
+            value: download.progress,
+          ),
           errorWidget: (context, url, error) => const Center(
             child: Icon(Remix.image_line),
           ),

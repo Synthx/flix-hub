@@ -4,13 +4,14 @@ import 'package:live_coding/screen/screen.dart';
 final router = GoRouter(
   routes: [
     ShellRoute(
-      builder: (context, state, child) {
-        return child;
-      },
+      builder: (context, state, child) => Splash(
+        child: child,
+      ),
       routes: [
         GoRoute(
           path: '/',
           builder: (context, state) => const HomeScreen(),
+          routes: const [],
         ),
       ],
     ),

@@ -15,7 +15,6 @@ class SplashStore extends Cubit<bool> {
     await Future.wait([
       attributeStore.init(),
       configStore.init(),
-      Future.delayed(const Duration(seconds: 1)),
     ]);
     emit(false);
   }

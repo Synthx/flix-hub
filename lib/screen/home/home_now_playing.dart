@@ -7,8 +7,8 @@ import 'package:live_coding/widget/widget.dart';
 
 import 'home_store.dart';
 
-class HomePopular extends StatelessWidget {
-  const HomePopular({super.key});
+class HomeNowPlaying extends StatelessWidget {
+  const HomeNowPlaying({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,15 +21,15 @@ class HomePopular extends StatelessWidget {
               horizontal: kSafeArea,
             ),
             child: Text(
-              'Trending',
+              'Now Playing',
               style: context.textStyle.titleSmall?.copyWith(),
             ),
           ),
           const SizedBox(height: kSpacer),
           SizedBox(
-            height: 270,
+            height: 160,
             child: BlocSelector<HomeStore, HomeState, List<MoviePreview>>(
-              selector: (state) => state.popular,
+              selector: (state) => state.nowPlaying,
               builder: (context, popular) {
                 return ListView.separated(
                   itemCount: popular.length,
@@ -42,7 +42,7 @@ class HomePopular extends StatelessWidget {
                   ),
                   itemBuilder: (context, index) {
                     return SizedBox(
-                      width: 170,
+                      width: 110,
                       child: KitMovieCard(
                         movie: popular[index],
                       ),

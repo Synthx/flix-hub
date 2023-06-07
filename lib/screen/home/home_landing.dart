@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:live_coding/core/extension/extension.dart';
+import 'package:live_coding/core/core.dart';
 import 'package:live_coding/data/data.dart';
+import 'package:live_coding/theme/theme.dart';
 import 'package:live_coding/widget/widget.dart';
 import 'package:remixicon/remixicon.dart';
 
@@ -19,40 +20,72 @@ class HomeLanding extends StatelessWidget {
           return const SliverAppBar();
         }
 
+        final height = 480 + context.topSafeArea;
         return SliverAppBar(
-          expandedHeight: 450,
-          flexibleSpace: Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(
-                    'https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/h8gHn0OzBoaefsYseUByqsmEDMY.jpg'),
-                fit: BoxFit.cover,
-                alignment: Alignment.center,
+          collapsedHeight: height,
+          expandedHeight: height,
+          snap: false,
+          pinned: false,
+          floating: false,
+          stretch: true,
+          flexibleSpace: Stack(
+            children: [
+              ShaderMask(
+                shaderCallback: (rect) => const LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [Colors.transparent, Colors.black],
+                ).createShader(Rect.fromLTRB(
+                  0,
+                  -140,
+                  rect.width,
+                  rect.height - 20,
+                )),
+                blendMode: BlendMode.darken,
+                child: KitPicture(
+                  movie.posterPath,
+                ),
               ),
-            ),
-            child: Column(
-              children: [
-                Text(
-                  movie.title,
-                  textAlign: TextAlign.center,
-                  style: context.textStyle.titleMedium?.copyWith(),
+              Padding(
+                padding: EdgeInsets.only(
+                  top: kSafeArea + context.topSafeArea,
+                  bottom: 50,
+                  left: kSafeArea,
+                  right: kSafeArea,
                 ),
-                Wrap(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text('${movie.releaseDate.year}'),
-                    Text('${movie.genreIds.firstOrNull}'),
-                  ],
-                ),
-                Row(
-                  children: [
-                    const KitIconButton(
-                      icon: Remix.add_line,
+                    Text(
+                      'Movie · ${movie.genreIds.firstOrNull} · ${movie.releaseDate.year}',
+                      textAlign: TextAlign.center,
+                      style: context.textStyle.bodyMedium?.copyWith(
+                        color: context.textStyle.titleMedium?.color,
+                      ),
                     ),
-                    KitButton.text('More'),
+                    const SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        KitButton.icon(
+                          'Play',
+                          icon: Remix.play_fill,
+                          reversed: true,
+                          onTap: () {},
+                        ),
+                        const SizedBox(width: kSpacer),
+                        KitButton.icon(
+                          'More',
+                          icon: Remix.add_fill,
+                          variant: KitButtonVariant.secondary,
+                          onTap: () {},
+                        ),
+                      ],
+                    ),
                   ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         );
       },

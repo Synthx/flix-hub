@@ -16,22 +16,9 @@ class KitMovieCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => onTap?.call(movie),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Flexible(
-            child: Container(
-              decoration: BoxDecoration(
-                color: Theme.of(context).cardColor,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: KitPicture(
-                path: movie.posterPath,
-              ),
-            ),
-          ),
-          const SizedBox(height: 5),
-        ],
+      child: KitPicture(
+        movie.posterPath,
+        borderRadius: BorderRadius.circular(12),
       ),
     );
   }
