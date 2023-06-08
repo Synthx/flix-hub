@@ -12,14 +12,13 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: Colors.transparent,
       forceMaterialTransparency: true,
-      centerTitle: false,
       title: Row(
         children: [
           const Spacer(),
           const SizedBox(width: kSpacer),
           Container(
-            height: 50,
-            width: 50,
+            height: 60,
+            width: 60,
             decoration: BoxDecoration(
               color: Theme.of(context).primaryColor,
               borderRadius: BorderRadius.circular(12),

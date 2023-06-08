@@ -1,9 +1,9 @@
-export 'attribute_state.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:live_coding/data/data.dart';
 
 import 'attribute_state.dart';
+
+export 'attribute_state.dart';
 
 class AttributeStore extends Cubit<AttributeState> {
   final AttributeService attributeService;
@@ -13,9 +13,12 @@ class AttributeStore extends Cubit<AttributeState> {
   }) : super(initialAttributeState);
 
   Future init() async {
-    final genres = await attributeService.loadGenres();
+    final [genres] = await Future.wait([
+      attributeService.findAllGenres(),
+    ]);
     emit(state.copyWith(
       genres: genres,
+      languages: [],
     ));
   }
 }

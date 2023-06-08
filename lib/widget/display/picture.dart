@@ -13,8 +13,8 @@ enum KitPictureFormat {
 }
 
 class KitPicture extends StatelessWidget {
-  final String path;
   final KitPictureFormat format;
+  final String? path;
   final BorderRadius? borderRadius;
 
   const KitPicture(
@@ -29,7 +29,7 @@ class KitPicture extends StatelessWidget {
     return BlocSelector<ConfigStore, ConfigState, String?>(
       selector: (state) => state.baseImageUrl,
       builder: (context, baseImageUrl) {
-        if (baseImageUrl == null) {
+        if (baseImageUrl == null || path == null) {
           return const Center(
             child: Icon(Remix.image_line),
           );
@@ -47,9 +47,10 @@ class KitPicture extends StatelessWidget {
               ),
             ),
           ),
-          progressIndicatorBuilder: (context, url, download) =>
-              CircularProgressIndicator(
-            value: download.progress,
+          progressIndicatorBuilder: (context, url, download) => Center(
+            child: CircularProgressIndicator(
+              value: download.progress,
+            ),
           ),
           errorWidget: (context, url, error) => const Center(
             child: Icon(Remix.image_line),

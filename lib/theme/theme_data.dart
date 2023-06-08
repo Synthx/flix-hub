@@ -29,6 +29,11 @@ ThemeData generateThemeData({
     ),
     textTheme: defaultTextTheme
         .copyWith(
+          titleLarge: TextStyle(
+            fontSize: 34,
+            fontWeight: FontWeight.w700,
+            color: text,
+          ),
           titleMedium: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w700,
@@ -45,6 +50,6 @@ ThemeData generateThemeData({
             color: textSecondary,
           ),
         )
-        .apply(fontFamily: 'SF Pro Text'),
+        .apply(fontFamily: 'SFPro'),
   );
 }

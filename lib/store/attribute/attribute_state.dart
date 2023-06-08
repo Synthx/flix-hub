@@ -7,9 +7,11 @@ part 'attribute_state.freezed.dart';
 class AttributeState with _$AttributeState {
   const factory AttributeState({
     required List<Genre> genres,
+    required List<Language> languages,
   }) = _AttributeState;
 }
 
 const initialAttributeState = AttributeState(
   genres: [],
+  languages: [],
 );

@@ -1,0 +1,6 @@
+{
+    "@@locale": "en",
+    "title": "FlixHub",
+    "movieStatus": "{status, select, released{Released} postProduction{Post Production} other{Unknown}}",
+    "videoType": "{type, select, behindTheScenes{Behind the Scenes} clip{Clip} teaser{Teaser} trailer{Trailer} other{Unknown}}"
+}

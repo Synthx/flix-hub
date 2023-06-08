@@ -12,7 +12,9 @@ class MoviePreview with _$MoviePreview {
     required String overview,
     required DateTime releaseDate,
     required List<int> genreIds,
-    required String posterPath,
+    required double voteAverage,
+    required int voteCount,
+    String? posterPath,
     String? backdropPath,
   }) = _MoviePreview;
 

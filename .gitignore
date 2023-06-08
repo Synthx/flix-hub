@@ -13,6 +13,7 @@ migrate_working_dir/
 # Generated
 *.freezed.dart
 *.g.dart
+lib/generated/
 
 # IDE related
 *.iml

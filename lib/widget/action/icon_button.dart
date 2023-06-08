@@ -4,8 +4,8 @@ class KitIconButton extends StatelessWidget {
   final IconData icon;
   final VoidCallback? onTap;
 
-  const KitIconButton({
-    required this.icon,
+  const KitIconButton(
+    this.icon, {
     this.onTap,
     super.key,
   });
@@ -15,12 +15,12 @@ class KitIconButton extends StatelessWidget {
     return IconButton(
       onPressed: onTap,
       style: IconButton.styleFrom(
-        backgroundColor: const Color(0xFF000000),
-        padding: const EdgeInsets.all(0),
+        backgroundColor: const Color(0x66CACACA),
+        padding: const EdgeInsets.all(12),
       ),
       icon: Icon(
         icon,
-        size: 22,
+        size: 28,
         color: const Color(0xFFFFFFFF),
       ),
     );

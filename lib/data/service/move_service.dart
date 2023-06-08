@@ -57,4 +57,15 @@ class MovieService {
       (e) => MoviePreview.fromJson(e as Map<String, dynamic>),
     );
   }
+
+  Future<Movie> findById(int id) async {
+    final response = await http.get(
+      'movie/$id',
+      queryParameters: {
+        'append_to_response': 'videos,keywords',
+      },
+    );
+
+    return Movie.fromJson(response.data);
+  }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:live_coding/core/core.dart';
+import 'package:live_coding/theme/theme.dart';
 
 import 'home_app_bar.dart';
 import 'home_landing.dart';
@@ -10,6 +11,8 @@ import 'home_store.dart';
 import 'home_upcoming.dart';
 
 class HomeScreen extends StatelessWidget {
+  static String name = 'home';
+
   const HomeScreen({super.key});
 
   @override
@@ -42,7 +45,7 @@ class HomeScreen extends StatelessWidget {
               bottom: true,
               sliver: SliverPadding(
                 padding: EdgeInsets.only(
-                  bottom: 20,
+                  bottom: kSafeArea,
                 ),
                 sliver: HomeUpcoming(),
               ),

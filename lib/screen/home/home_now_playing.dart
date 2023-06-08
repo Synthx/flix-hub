@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:live_coding/core/core.dart';
 import 'package:live_coding/data/data.dart';
+import 'package:live_coding/screen/screen.dart';
 import 'package:live_coding/theme/theme.dart';
 import 'package:live_coding/widget/widget.dart';
 
@@ -9,6 +11,19 @@ import 'home_store.dart';
 
 class HomeNowPlaying extends StatelessWidget {
   const HomeNowPlaying({super.key});
+
+  Future _goToMovieDetail({
+    required BuildContext context,
+    required MoviePreview movie,
+  }) async {
+    context.pushNamed(
+      MovieDetailScreen.name,
+      extra: movie,
+      pathParameters: {
+        'id': movie.id.toString(),
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +60,10 @@ class HomeNowPlaying extends StatelessWidget {
                       width: 110,
                       child: KitMovieCard(
                         movie: popular[index],
+                        onTap: (movie) => _goToMovieDetail(
+                          context: context,
+                          movie: movie,
+                        ),
                       ),
                     );
                   },
