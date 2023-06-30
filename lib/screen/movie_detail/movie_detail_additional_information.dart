@@ -98,9 +98,11 @@ class MovieDetailAdditionalInformation extends StatelessWidget {
                   Wrap(
                     spacing: 5,
                     runSpacing: 5,
-                    children: keywords.map(
-                      (e) => KitChip.text(e.name),
-                    ).toList(),
+                    children: keywords
+                        .map(
+                          (e) => KitChip.text(e.name),
+                        )
+                        .toList(),
                   ),
                 ],
               ),

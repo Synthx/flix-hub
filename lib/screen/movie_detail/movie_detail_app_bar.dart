@@ -22,10 +22,9 @@ class MovieDetailAppBar extends StatelessWidget implements PreferredSizeWidget {
       forceMaterialTransparency: true,
       automaticallyImplyLeading: false,
       title: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
         children: [
           KitIconButton(
-            Remix.close_line,
+            Remix.arrow_left_s_line,
             onTap: () => _close(context: context),
           ),
         ],

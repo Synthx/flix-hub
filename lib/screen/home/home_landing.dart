@@ -26,6 +26,12 @@ class HomeLanding extends StatelessWidget {
     );
   }
 
+  Future _goToDiscoverPage({
+    required BuildContext context,
+  }) async {
+    context.pushNamed(DiscoverScreen.name);
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocSelector<HomeStore, HomeState, MoviePreview?>(
@@ -36,11 +42,11 @@ class HomeLanding extends StatelessWidget {
         }
 
         return KitSliverLanding(
-          path: movie.posterPath,
+          path: movie.backdropPath,
           child: Padding(
             padding: EdgeInsets.only(
               top: kSafeArea + context.topSafeArea,
-              bottom: 50,
+              bottom: 30,
               left: kSafeArea,
               right: kSafeArea,
             ),
@@ -48,7 +54,11 @@ class HomeLanding extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
-                  'Movie · ${movie.genreIds.firstOrNull} · ${movie.releaseDate.year}',
+                  [
+                    'Movie',
+                    movie.genreIds.firstOrNull,
+                    movie.releaseDate.year,
+                  ].join(' · '),
                   textAlign: TextAlign.center,
                   style: context.textStyle.bodyMedium?.copyWith(
                     color: context.textStyle.titleMedium?.color,
@@ -61,7 +71,6 @@ class HomeLanding extends StatelessWidget {
                     KitButton.icon(
                       'Play',
                       icon: Remix.play_fill,
-                      reversed: true,
                       onTap: () {},
                     ),
                     const SizedBox(width: kSpacer),
@@ -72,6 +81,22 @@ class HomeLanding extends StatelessWidget {
                       onTap: () => _goToMovieDetail(
                         context: context,
                         movie: movie,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 60),
+                Row(
+                  children: [
+                    Text(
+                      'Everything',
+                      style: context.textStyle.titleLarge?.copyWith(),
+                    ),
+                    const Spacer(),
+                    KitIconButton(
+                      Remix.search_line,
+                      onTap: () => _goToDiscoverPage(
+                        context: context,
                       ),
                     ),
                   ],

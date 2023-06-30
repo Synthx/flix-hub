@@ -57,7 +57,6 @@ class MovieDetailLanding extends StatelessWidget {
                       KitButton.icon(
                         'Play',
                         icon: Remix.play_fill,
-                        reversed: true,
                         onTap: () {},
                       ),
                       const SizedBox(width: kSpacer),

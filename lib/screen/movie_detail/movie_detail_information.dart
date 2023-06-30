@@ -72,7 +72,6 @@ class MovieDetailInformation extends StatelessWidget {
                     preview.overview,
                     style: context.textStyle.bodyMedium?.copyWith(),
                   ),
-                  const SizedBox(height: kSpacer),
                 ],
               ),
             ),

@@ -44,6 +44,7 @@ class KitPicture extends StatelessWidget {
               image: DecorationImage(
                 image: imageProvider,
                 fit: BoxFit.cover,
+                alignment: Alignment.center,
               ),
             ),
           ),

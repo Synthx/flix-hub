@@ -6,14 +6,18 @@ enum KitButtonVariant {
   secondary,
 }
 
+enum KitButtonSize {
+  small,
+  medium,
+}
+
 Color _backgroundColor({
   required BuildContext context,
   required KitButtonVariant variant,
-  required bool reversed,
 }) {
   switch (variant) {
     case KitButtonVariant.primary:
-      return reversed ? const Color(0xFFFFFFFF) : context.primaryColor;
+      return context.primaryColor;
     case KitButtonVariant.secondary:
       return const Color(0x66CACACA);
   }
@@ -21,11 +25,9 @@ Color _backgroundColor({
 
 Color _textColor({
   required KitButtonVariant variant,
-  required bool reversed,
 }) {
   switch (variant) {
     case KitButtonVariant.primary:
-      return reversed ? const Color(0xFF000000) : const Color(0xFFFFFFFF);
     case KitButtonVariant.secondary:
       return const Color(0xFFFFFFFF);
   }
@@ -34,13 +36,13 @@ Color _textColor({
 class KitButton extends StatelessWidget {
   final VoidCallback? onTap;
   final KitButtonVariant variant;
-  final bool reversed;
+  final KitButtonSize size;
   final Widget child;
 
   const KitButton({
     required this.child,
     this.variant = KitButtonVariant.primary,
-    this.reversed = false,
+    this.size = KitButtonSize.medium,
     this.onTap,
     super.key,
   });
@@ -48,18 +50,17 @@ class KitButton extends StatelessWidget {
   factory KitButton.text(
     String text, {
     KitButtonVariant variant = KitButtonVariant.primary,
-    bool reversed = false,
+    KitButtonSize size = KitButtonSize.medium,
     VoidCallback? onTap,
   }) {
     final textColor = _textColor(
       variant: variant,
-      reversed: reversed,
     );
 
     return KitButton(
       onTap: onTap,
       variant: variant,
-      reversed: reversed,
+      size: size,
       child: Text(
         text,
         style: TextStyle(
@@ -75,18 +76,17 @@ class KitButton extends StatelessWidget {
     String text, {
     required IconData icon,
     KitButtonVariant variant = KitButtonVariant.primary,
-    bool reversed = false,
+    KitButtonSize size = KitButtonSize.medium,
     VoidCallback? onTap,
   }) {
     final textColor = _textColor(
       variant: variant,
-      reversed: reversed,
     );
 
     return KitButton(
       onTap: onTap,
       variant: variant,
-      reversed: reversed,
+      size: size,
       child: Row(
         children: [
           Icon(
@@ -113,10 +113,10 @@ class KitButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onTap,
       style: ElevatedButton.styleFrom(
+        elevation: 0,
         backgroundColor: _backgroundColor(
           context: context,
           variant: variant,
-          reversed: reversed,
         ),
         padding: const EdgeInsets.symmetric(
           horizontal: 20,
@@ -124,6 +124,11 @@ class KitButton extends StatelessWidget {
         ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(99),
+        ),
+        textStyle: const TextStyle(
+          fontSize: 15,
+          fontWeight: FontWeight.w600,
+          color: Color(0xFFFFFFFF),
         ),
       ),
       child: child,

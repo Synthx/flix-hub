@@ -6,6 +6,5 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setupInjector();
   setupHttpClient();
-
   runApp(const LiveCoding());
 }

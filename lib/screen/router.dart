@@ -15,6 +15,11 @@ final router = GoRouter(
           builder: (context, state) => const HomeScreen(),
           routes: [
             GoRoute(
+              path: 'discover',
+              name: DiscoverScreen.name,
+              builder: (context, state) => const DiscoverScreen(),
+            ),
+            GoRoute(
               path: 'movies/:id',
               name: MovieDetailScreen.name,
               builder: (context, state) => MovieDetailScreen(

@@ -33,7 +33,7 @@ class KitSliverLanding extends StatelessWidget {
               colors: [Colors.transparent, Colors.black],
             ).createShader(Rect.fromLTRB(
               0,
-              -140,
+              -10,
               rect.width,
               rect.height - 20,
             )),
