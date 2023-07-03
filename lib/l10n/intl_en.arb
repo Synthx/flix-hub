@@ -1,6 +1,7 @@
 {
     "@@locale": "en",
-    "title": "FlixHub",
+    "title": "Flix",
     "movieStatus": "{status, select, released{Released} postProduction{Post Production} other{Unknown}}",
+    "sortBy": "{sortBy, select, popularity{Trending} revenue{Revenue} primaryReleaseDate{Release date} voteAverage{Top rated} voteCount{Rated count} other{Unknown}}",
     "videoType": "{type, select, behindTheScenes{Behind the Scenes} clip{Clip} teaser{Teaser} trailer{Trailer} other{Unknown}}"
 }

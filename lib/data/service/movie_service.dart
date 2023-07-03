@@ -28,7 +28,8 @@ class MovieService {
   }
 
   Future<Page<MoviePreview>> findAll({
-    String sortBy = 'popularity.desc',
+    SortBy sortBy = SortBy.popularity,
+    SortDirection sortDirection = SortDirection.descending,
     int page = 1,
     List<int>? releaseTypes,
     Range<DateTime>? releaseDate,
@@ -36,10 +37,10 @@ class MovieService {
     final Map<String, dynamic> params = {
       'include_adult': false,
       'include_video': false,
-      'sort_by': sortBy,
+      'sort_by': '${sortBy.value}.${sortDirection.value}',
       'page': page,
     };
-    if (releaseTypes != null) {
+    if (releaseTypes != null && releaseTypes.isNotEmpty) {
       params['with_release_type'] = releaseTypes.join('|');
     }
     if (releaseDate != null) {

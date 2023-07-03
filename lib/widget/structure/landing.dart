@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:live_coding/core/core.dart';
-import 'package:live_coding/theme/theme.dart';
 import 'package:live_coding/widget/widget.dart';
 
 class KitSliverLanding extends StatelessWidget {
