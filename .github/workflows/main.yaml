@@ -19,3 +19,9 @@ jobs:
         run: flutter --version
       - name: ➕ dependencies
         run: flutter pub get
+      - name: 🔨 generate
+        run: dart run build_runner build
+      - name: 💄 format
+        run: dart format --set-exit-if-changed .
+      - name: 🚨 analyze
+        run: flutter analyze
